@@ -59,7 +59,7 @@ export const Manager = () => {
         </div>
         <AddPassword
           newPassword={newPassword}
-          click={handleClick}
+         
         ></AddPassword>
       </div>
       <Cards newPassword={newPassword}></Cards>

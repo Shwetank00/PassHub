@@ -1,7 +1,7 @@
 {
   "name": "PassHub",
   "homepage": "https://Shwetank00.github.io/PassHub",
-  "private": true,
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
