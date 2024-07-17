@@ -12,6 +12,10 @@
     .btn-primary{
         @apply w-[150px] text-sm bg-blue-500 text-white p-3 rounded-lg items-center hover:bg-blue-600;
     }
+    .scrollbar-hidden::-webkit-scrollbar {
+        @apply w-0 h-0
+      }
+    
 }
 @layer base {
     html {
@@ -24,3 +28,7 @@
         overflow-x: hidden;
     }
 }
+.scrollbar-hidden::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }

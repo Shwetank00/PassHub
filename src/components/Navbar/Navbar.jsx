@@ -4,7 +4,7 @@ import { Logo } from "../Logo/Logo";
 export const Navbar = () => {
   return (
     <div
-      className="bg-slate-950  text-white flex items-center justify-between px-6 h-14
+      className="bg-slate-950  text-white flex items-center justify-between px-6 h-14 
     "
     >
       <Logo></Logo>

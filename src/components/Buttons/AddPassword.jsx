@@ -1,16 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaKey } from "react-icons/fa";
 
-export const AddPassword = ({ form }) => {
-  //! SAVE PASSWORD TO LOCAL STORAGE ON CLICKING ADD PASSWORD BUTTON
-  // Function to save password to local storage
-  const savePassword = () => {
-    // Add the form password to the passwordArray state
-    setpasswordArray([...passwordArray, form]);
-    // Convert the passwordArray to JSON string and save it to local storage
-    localStorage.setItem("passwords", JSON.stringify([...passwordArray, form]));
-  };
-
+export const AddPassword = ({ newPassword,click }) => {
   //! PASSWORD ARRAY TO FETCT OTHER PASSWORDS FROM LOCAL STORAGE
   // State to store the array of passwords
   const [passwordArray, setpasswordArray] = useState([]);
@@ -24,10 +15,33 @@ export const AddPassword = ({ form }) => {
     }
   }, []);
 
+  //! SAVE PASSWORD TO LOCAL STORAGE ON CLICKING ADD PASSWORD BUTTON
+  // Function to save password to local storage
+  const savePassword = () => {
+    if (newPassword.website && newPassword.username && newPassword.password) {
+      // Add the form password to the passwordArray state
+      setpasswordArray([...passwordArray, newPassword]);
+      // Convert the passwordArray to JSON string and save it to local storage
+      localStorage.setItem(
+        "passwords",
+        JSON.stringify([...passwordArray, newPassword])
+      );
+    } else {
+      alert("Please fill all the fields");
+    }
+  };
+
   return (
     <div>
       <div className="text-center w-full ">
-        <button onClick={savePassword} className="btn-primary font-medium ">
+        <button
+          onClick={() => {
+            savePassword();
+            click();
+          }}
+          className="btn-primary font-medium "
+          type="submit"
+        >
           <FaKey className="inline-block mr-2" />
           <span className="inline-block">Add Password</span>{" "}
         </button>

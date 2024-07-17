@@ -1,39 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, createRef } from "react";
 import { Logo } from "./Logo/Logo";
 import { PasswordInput } from "./Input/PasswordInput";
 import { Header } from "./Header/Header";
 import { AddPassword } from "./Buttons/AddPassword";
+import { Cards } from "./Cards/Cards";
 
 export const Manager = () => {
-  const [form, setform] = useState({ site: "", username: "", password: "" });
+  const formRef = createRef();
+  const [newPassword, setNewPassword] = useState({
+    website: "",
+    username: "",
+    password: "",
+  });
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
+    console.log("Form submitted:", newPassword);
+  };
   const handleChange = (e) => {
-    setform({ ...form, [e.target.name]: e.target.value });
+    setNewPassword({ ...newPassword, [e.target.name]: e.target.value });
   };
 
+ 
   return (
     <>
-      <div className="  max-w-5xl text-slate-50 mycontainer  shadow-2xl ">
-        <div className="text-center text-3xl">
+      <div className="   text-slate-50 mycontainer  shadow-2xl ">
+        <div className="text-center text-3xl  ">
           <Logo></Logo>
         </div>
 
         <Header></Header>
-
+        <form onSubmit={handleSubmit} />
         <div className="flex flex-col p-4 ">
           <input
-            name="site"
+            name="website"
             onChange={handleChange}
-            value={form.site}
+            value={newPassword.website}
             className=" input-box "
             type="text"
-            placeholder="Enter Website URL"
+            placeholder="Website URL"
           />
-          <div className="flex flex-row gap-4 w-full">
+          <div className="md:flex gap-4 w-full ">
             <input
               name="username"
               onChange={handleChange}
-              value={form.username}
+              value={newPassword.username}
               className=" input-box"
               type="text"
               placeholder="Username"
@@ -41,12 +53,16 @@ export const Manager = () => {
             <PasswordInput
               name="password"
               handleChange={handleChange}
-              value={form.password}
+              value={newPassword.password}
             />
           </div>
         </div>
-        <AddPassword form={form}></AddPassword>
+        <AddPassword
+          newPassword={newPassword}
+          click={handleClick}
+        ></AddPassword>
       </div>
+      <Cards newPassword={newPassword}></Cards>
     </>
   );
 };
